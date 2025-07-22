@@ -1,5 +1,5 @@
 #!/bin/bash
-EXPECTED="Hello, Test!"
+EXPECTED="Hello from DOD, Test!"
 
 OUTPUT=$(node -e "console.log(require('./src/app')('Test'))")
 
