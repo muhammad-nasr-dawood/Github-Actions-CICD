@@ -1,5 +1,10 @@
+# as we know there're 3 types of triggers in GitHub Actions
+# 1. webhook based triggers (push, pull_request, etc.)
+# 2. scheduled triggers (cron jobs)
+# 3. manual triggers (workflow_dispatch)
 on:
-  push: # this is webhook based trigger
+  push: # this is webhook based trigger (runs automatically when a push is made)
+     # we can specify branches and paths to limit when this trigger runs
     branches:
       - main
       - "release/**" # means any branch that starts with "release/"
@@ -18,4 +23,4 @@ jobs:
         uses: actions/checkout@v4.2.2
 
       - name: Run tests
-        run: npm test
+        run: npm test # this will run the test file defined in package.json
