@@ -1,0 +1,21 @@
+on:
+  push: # this is webhook based trigger
+    branches:
+      - main
+      - "release/**" # means any branch that starts with "release/"
+    paths:
+      - "src/**" # but i want the push trigger to only run when files in src/ are changed
+  pull_request: # another webhook based trigger (we can use the same workflow for both triggers)
+    branches:
+      - main
+      - "release/**"
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4.2.2
+
+      - name: Run tests
+        run: npm test
