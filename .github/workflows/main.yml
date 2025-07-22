@@ -11,6 +11,11 @@ jobs: # note jobs run in parallel not sequntial  unless you modify them and make
 
     steps: # steps is a list of map ( a list because each item starts with - and map because in each item there's key-value pairs which represent the map) note steps unlike jobs they part of the job and they run sequential not in parallel
       - name: Print a welcome message # step name
-        run: echo "Welcome to our first Github Actions workflow" # step commands ( note if i use <run> then im gonna use a bash command and if used <use> them im gonna call a predefined action on github note it could be created by github itself of by developers or by yourself
+        run: echo "Welcome to our first Github Actions workflow" # step commands ( note if i use <run> then im gonna use a bash command and if used <uses> them im gonna call a predefined action on github note it could be created by github itself of by developers or by yourself
+
+      - name: Checkout Repository # note github doesn't pull the repo into the runner (VM) or container if you didn't explicitly tell him to do that so we do that step to pull the code from github repo into the VM or container
+        uses: actions/checkout@v4.2.2 # this is a predefined acion in github you just call it to use it it's like a function and it has parameters too
+
+      - name: List repository files
+        run: ls -la # this is just a bash command to be run in the cmd and it will list the whole files in the repo
       
-  
