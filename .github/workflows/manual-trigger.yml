@@ -1,0 +1,22 @@
+
+on:
+  workflow_dispatch: # this is a manual trigger (the third type) (it's used to manually run the workflow)
+    # we can specify inputs for the manual trigger  
+    inputs: # this allows users to provide input when manually triggering the workflow
+      environment: # input for the environment to deploy to
+        description: "Choose environment" # description for the input
+        required: true # this input is required
+        default: "staging" # default value if not provided
+        # type of input, can be string, boolean, or choice (dropdown)
+        type: choice
+        options: # options for the dropdown
+          - staging
+          - production
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy application
+        run: echo "Deploying the application to ${{inputs.environment}} environment" # anything between ${{}} is a GitHub Actions expression that evaluates and parses the input value
+        # this will print the environment chosen when manually triggering the workflow
