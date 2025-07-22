@@ -1,0 +1,16 @@
+name: First Workflow # workflow name (optional)
+
+on:
+  push: # trigger (each workflow needs a trigger) note there're 3 types of triggers
+    branches:
+      - main # anything starts with hyphen means it's an item within a list -- we could add another brach below it starts wwith hyphen below it and once any push on any branch of them happen it will trigger the workflow(pipeline) to run
+
+jobs: # note jobs run in parallel not sequntial  unless you modify them and make them depend on each other using <need> keyword
+  example-job: # job name
+    runs-on: ubuntu-latest # this defines the runner which should be an os that runs on a virtual machine directly or a container that hosts the repo within that virtual machine to run the job
+
+    steps: # steps is a list of map ( a list because each item starts with - and map because in each item there's key-value pairs which represent the map) note steps unlike jobs they part of the job and they run sequential not in parallel
+      - name: Print a welcome message # step name
+        run: echo "Welcome to our first Github Actions workflow" # step commands ( note if i use <run> then im gonna use a bash command and if used <use> them im gonna call a predefined action on github note it could be created by github itself of by developers or by yourself
+      
+  
